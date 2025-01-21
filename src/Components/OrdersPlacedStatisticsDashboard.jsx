@@ -27,7 +27,7 @@ const OrdersPlacedStatisticsDashboard = () => {
   const [inactiveReports, setInactiveReports] = useState([]);
   const [groupingOption, setGroupingOption] = useState("none");
   const [tags, setTags] = useState("");
-  const [fileDate, setFileDate] = useState(""); // Store the file date
+  const [fileDate, setFileDate] = useState(""); 
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const modalStyle = {
@@ -45,9 +45,9 @@ const OrdersPlacedStatisticsDashboard = () => {
 
   const handleOpenModal = () => {
     setOpenModal(true);
-    setSelectedFolder(""); // Clear the selected folder
+    setSelectedFolder(""); 
     setFileDate("");
-    setTags(""); // Clear the tags field
+    setTags(""); 
   };
 
   const handleTabChange = (event, newValue) => {
@@ -100,7 +100,7 @@ const OrdersPlacedStatisticsDashboard = () => {
               isActive: true,
               folder: selectedFolder,
               tags: [],
-              fileDate, // Add fileDate to the report
+              fileDate, 
             });
 
             if (newData.length === files.length) {
@@ -435,16 +435,16 @@ const OrdersPlacedStatisticsDashboard = () => {
                         display: "flex",
                         flexDirection: "column",
                         flex: 1,
-                        overflowX: "scroll", // Always show horizontal scrollbar
+                        overflowX: "scroll", 
                         "&::-webkit-scrollbar": {
-                          height: "8px", // Adjust the height of the horizontal scrollbar
+                          height: "8px", 
                         },
                         "&::-webkit-scrollbar-thumb": {
-                          backgroundColor: "#3f51b5", // Customize the scrollbar thumb color
-                          borderRadius: "4px", // Optional: Add rounded corners to the scrollbar thumb
+                          backgroundColor: "#3f51b5", 
+                          borderRadius: "4px", 
                         },
                         "&::-webkit-scrollbar-track": {
-                          backgroundColor: "#f0f0f0", // Set the background color for the scrollbar track
+                          backgroundColor: "#f0f0f0", 
                         },
                       }}>
                       <Box
@@ -452,7 +452,7 @@ const OrdersPlacedStatisticsDashboard = () => {
                           display: "flex",
                           flexDirection: "column",
                           flex: 1,
-                          minWidth: "800px", // Ensure enough space for columns to trigger scrolling
+                          minWidth: "800px",
                         }}>
                         <DataGrid
                           rows={fileData.rows}
@@ -467,23 +467,23 @@ const OrdersPlacedStatisticsDashboard = () => {
                             if (newPageSize === "All") {
                               setRowsPerPage(fileData.rows.length); // Set rowsPerPage to the total number of rows if "All" is selected
                             } else {
-                              setRowsPerPage(Number(newPageSize)); // Convert string to number and set rowsPerPage
+                              setRowsPerPage(Number(newPageSize)); 
                             }
                           }}
                           sx={{
                             "& .MuiDataGrid-columnHeaders": {
-                              backgroundColor: "#3f51b5", // Header background color
-                              color: "#000", // Header text color
+                              backgroundColor: "#3f51b5", 
+                              color: "#000", 
                               fontWeight: "bold",
                             },
                             "& .MuiDataGrid-row:nth-of-type(odd)": {
-                              backgroundColor: "rgba(242, 242, 242, 0.7)", // Light gray for odd rows
+                              backgroundColor: "rgba(242, 242, 242, 0.7)", 
                             },
                             "& .MuiDataGrid-row:nth-of-type(even)": {
-                              backgroundColor: "#fff", // White for even rows
+                              backgroundColor: "#fff", 
                             },
                             "& .MuiDataGrid-footerContainer": {
-                              justifyContent: "flex-start", // Align pagination to the left
+                              justifyContent: "flex-start", 
                             },
                           }}
                           paginationMode="client"
@@ -556,16 +556,16 @@ const OrdersPlacedStatisticsDashboard = () => {
                     display: "flex",
                     flexDirection: "column",
                     flex: 1,
-                    overflowX: "scroll", // Always show horizontal scrollbar
+                    overflowX: "scroll", 
                     "&::-webkit-scrollbar": {
-                      height: "8px", // Adjust the height of the horizontal scrollbar
+                      height: "8px", 
                     },
                     "&::-webkit-scrollbar-thumb": {
-                      backgroundColor: "#3f51b5", // Customize the scrollbar thumb color
-                      borderRadius: "4px", // Optional: Add rounded corners to the scrollbar thumb
+                      backgroundColor: "#3f51b5", 
+                      borderRadius: "4px", 
                     },
                     "&::-webkit-scrollbar-track": {
-                      backgroundColor: "#f0f0f0", // Set the background color for the scrollbar track
+                      backgroundColor: "#f0f0f0", 
                     },
                   }}>
                   <Box
@@ -573,7 +573,7 @@ const OrdersPlacedStatisticsDashboard = () => {
                       display: "flex",
                       flexDirection: "column",
                       flex: 1,
-                      minWidth: "800px", // Ensure enough space for columns to trigger scrolling
+                      minWidth: "800px", 
                     }}>
                     <DataGrid
                       rows={fileData.rows}
@@ -588,24 +588,24 @@ const OrdersPlacedStatisticsDashboard = () => {
                         if (newPageSize === "All") {
                           setRowsPerPage(fileData.rows.length); // Set rowsPerPage to the total number of rows if "All" is selected
                         } else {
-                          setRowsPerPage(Number(newPageSize)); // Convert string to number and set rowsPerPage
+                          setRowsPerPage(Number(newPageSize)); 
                         }
                       }}
                       paginationMode="client"
                       sx={{
                         "& .MuiDataGrid-columnHeaders": {
-                          backgroundColor: "#3f51b5", // Header background color
-                          color: "#000", // Header text color
+                          backgroundColor: "#3f51b5", 
+                          color: "#000", 
                           fontWeight: "bold",
                         },
                         "& .MuiDataGrid-row:nth-of-type(odd)": {
-                          backgroundColor: "rgba(242, 242, 242, 0.7)", // Light gray for odd rows
+                          backgroundColor: "rgba(242, 242, 242, 0.7)", 
                         },
                         "& .MuiDataGrid-row:nth-of-type(even)": {
-                          backgroundColor: "#fff", // White for even rows
+                          backgroundColor: "#fff", 
                         },
                         "& .MuiDataGrid-footerContainer": {
-                          justifyContent: "flex-start !impportant", // Align pagination to the left
+                          justifyContent: "flex-start !impportant", 
                         },
                       }}
                     />
