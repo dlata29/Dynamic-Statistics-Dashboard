@@ -25,27 +25,29 @@ Welcome to the **Dynamic Statistics Dashboard** project! This project provides a
 - Column headers' width can be adjusted.
 - Hide/show columns to display only the necessary information.
 
+
+## Tech Stack
+
+- **React**: A JavaScript library for building user interfaces.
+- **Material UI**: A React component library for UI components.
+- **Vite**: A fast development server and build tool.
+- **Emotion**: A library for writing CSS styles with JavaScript.
+- **PapaParse**: A library for parsing CSV data.
+
 ## Installation
 
 ### Prerequisites
-
 Before you begin, ensure you have **Node.js** installed on your machine. You can download it from [here](https://nodejs.org/).
 
 ### Steps to run the project
-
 1) **Clone the repository:**
-   ```bash
    git clone https://github.com/dlata29/Dynamic-Statistics-Dashboard.git
 
   ### To set up and run the project locally:
-
 2) **Navigate to the project directory**
-   ```bash
    cd Dynamic-Statistics-Dashboard
-
 3) **Install the dependencies:**
     npm install
-
 4)  **Start the development server:**
      npm run dev
 
