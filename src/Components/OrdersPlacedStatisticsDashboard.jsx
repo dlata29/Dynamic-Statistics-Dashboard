@@ -17,6 +17,7 @@ import {
 import { DataGrid } from "@mui/x-data-grid";
 import Papa from "papaparse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 const OrdersPlacedStatisticsDashboard = () => {
   const [activeTab, setActiveTab] = useState("Bengaluru");
@@ -501,112 +502,117 @@ const OrdersPlacedStatisticsDashboard = () => {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel2a-content"
           id="panel2a-header">
-          <Typography>Inactive Reports</Typography>
+          <Typography>
+            Inactive Reports -{" "}
+            {inactiveReports.filter((curr) => curr.folder === activeTab).length}
+          </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {inactiveReports.map((fileData, index) => (
-            <Box
-              key={index}
-              sx={{ mb: 2, background: "#fff", padding: "10px 10px" }}>
+          {inactiveReports
+            .filter((curr) => curr.folder === activeTab)
+            .map((fileData, index) => (
               <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  mb: 1,
-                  flexWrap: "wrap",
-                }}>
-                <Typography
-                  variant="h6"
-                  sx={{ color: "#000", fontWeight: "bold" }}>
-                  {fileData.fileName}
-                  {"  "}
+                key={index}
+                sx={{ mb: 2, background: "#fff", padding: "10px 10px" }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    mb: 1,
+                    flexWrap: "wrap",
+                  }}>
                   <Typography
-                    component="span"
-                    sx={{
-                      color: "red",
-                      fontWeight: "normal",
-                      fontSize: "13px",
-                    }}>
-                    {fileData.fileDate}
+                    variant="h6"
+                    sx={{ color: "#000", fontWeight: "bold" }}>
+                    {fileData.fileName}
+                    {"  "}
+                    <Typography
+                      component="span"
+                      sx={{
+                        color: "red",
+                        fontWeight: "normal",
+                        fontSize: "13px",
+                      }}>
+                      {fileData.fileDate}
+                    </Typography>
                   </Typography>
-                </Typography>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Switch
-                    checked={fileData.isActive}
-                    onChange={() =>
-                      handleToggleActive(fileData.id, fileData.isActive)
-                    }
-                    color="primary"
-                  />{" "}
-                  <Typography variant="body2">
-                    {fileData.isActive ? "Active" : "Inactive"}
-                  </Typography>
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <Switch
+                      checked={fileData.isActive}
+                      onChange={() =>
+                        handleToggleActive(fileData.id, fileData.isActive)
+                      }
+                      color="primary"
+                    />{" "}
+                    <Typography variant="body2">
+                      {fileData.isActive ? "Active" : "Inactive"}
+                    </Typography>
+                  </Box>
                 </Box>
-              </Box>
 
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  flex: 1,
-                  overflowX: "scroll", // Always show horizontal scrollbar
-                  "&::-webkit-scrollbar": {
-                    height: "8px", // Adjust the height of the horizontal scrollbar
-                  },
-                  "&::-webkit-scrollbar-thumb": {
-                    backgroundColor: "#3f51b5", // Customize the scrollbar thumb color
-                    borderRadius: "4px", // Optional: Add rounded corners to the scrollbar thumb
-                  },
-                  "&::-webkit-scrollbar-track": {
-                    backgroundColor: "#f0f0f0", // Set the background color for the scrollbar track
-                  },
-                }}>
                 <Box
                   sx={{
                     display: "flex",
                     flexDirection: "column",
                     flex: 1,
-                    minWidth: "800px", // Ensure enough space for columns to trigger scrolling
+                    overflowX: "scroll", // Always show horizontal scrollbar
+                    "&::-webkit-scrollbar": {
+                      height: "8px", // Adjust the height of the horizontal scrollbar
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                      backgroundColor: "#3f51b5", // Customize the scrollbar thumb color
+                      borderRadius: "4px", // Optional: Add rounded corners to the scrollbar thumb
+                    },
+                    "&::-webkit-scrollbar-track": {
+                      backgroundColor: "#f0f0f0", // Set the background color for the scrollbar track
+                    },
                   }}>
-                  <DataGrid
-                    rows={fileData.rows}
-                    columns={fileData.columns}
-                    initialState={{
-                      pagination: {
-                        paginationModel: { pageSize: 10, page: 0 },
-                      },
-                    }}
-                    pageSizeOptions={[10, 20, 50, 100, 1000, "All"]}
-                    onPageSizeChange={(newPageSize) => {
-                      if (newPageSize === "All") {
-                        setRowsPerPage(fileData.rows.length); // Set rowsPerPage to the total number of rows if "All" is selected
-                      } else {
-                        setRowsPerPage(Number(newPageSize)); // Convert string to number and set rowsPerPage
-                      }
-                    }}
-                    paginationMode="client"
+                  <Box
                     sx={{
-                      "& .MuiDataGrid-columnHeaders": {
-                        backgroundColor: "#3f51b5", // Header background color
-                        color: "#000", // Header text color
-                        fontWeight: "bold",
-                      },
-                      "& .MuiDataGrid-row:nth-of-type(odd)": {
-                        backgroundColor: "rgba(242, 242, 242, 0.7)", // Light gray for odd rows
-                      },
-                      "& .MuiDataGrid-row:nth-of-type(even)": {
-                        backgroundColor: "#fff", // White for even rows
-                      },
-                      "& .MuiDataGrid-footerContainer": {
-                        justifyContent: "flex-start !impportant", // Align pagination to the left
-                      },
-                    }}
-                  />
+                      display: "flex",
+                      flexDirection: "column",
+                      flex: 1,
+                      minWidth: "800px", // Ensure enough space for columns to trigger scrolling
+                    }}>
+                    <DataGrid
+                      rows={fileData.rows}
+                      columns={fileData.columns}
+                      initialState={{
+                        pagination: {
+                          paginationModel: { pageSize: 10, page: 0 },
+                        },
+                      }}
+                      pageSizeOptions={[10, 20, 50, 100, 1000, "All"]}
+                      onPageSizeChange={(newPageSize) => {
+                        if (newPageSize === "All") {
+                          setRowsPerPage(fileData.rows.length); // Set rowsPerPage to the total number of rows if "All" is selected
+                        } else {
+                          setRowsPerPage(Number(newPageSize)); // Convert string to number and set rowsPerPage
+                        }
+                      }}
+                      paginationMode="client"
+                      sx={{
+                        "& .MuiDataGrid-columnHeaders": {
+                          backgroundColor: "#3f51b5", // Header background color
+                          color: "#000", // Header text color
+                          fontWeight: "bold",
+                        },
+                        "& .MuiDataGrid-row:nth-of-type(odd)": {
+                          backgroundColor: "rgba(242, 242, 242, 0.7)", // Light gray for odd rows
+                        },
+                        "& .MuiDataGrid-row:nth-of-type(even)": {
+                          backgroundColor: "#fff", // White for even rows
+                        },
+                        "& .MuiDataGrid-footerContainer": {
+                          justifyContent: "flex-start !impportant", // Align pagination to the left
+                        },
+                      }}
+                    />
+                  </Box>
                 </Box>
               </Box>
-            </Box>
-          ))}
+            ))}
         </AccordionDetails>
       </Accordion>
 
